@@ -1,4 +1,4 @@
-module github.com/mostafa/xk6bundler
+module github.com/mostafa/xk6-bundler
 
 go 1.16
 

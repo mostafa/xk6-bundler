@@ -119,12 +119,12 @@ The core k6 version to build. Optional, if missing then `latest` will be used.
 
 ## GitHub Action
 
-For using xk6bundler as [GitHub Action](https://docs.github.com/en/actions), you should include a workflow step with `uses: mostafa/xk6bundler@v1`
+For using xk6bundler as [GitHub Action](https://docs.github.com/en/actions), you should include a workflow step with `uses: mostafa/xk6-bundler@v1`
 
 ```yaml
 - name: Build
   id: build
-  uses: mostafa/xk6bundler@v1
+  uses: mostafa/xk6-bundler@v1
   with:
     platform: linux/amd64 windows/amd64
     with: |
@@ -183,14 +183,14 @@ You can install the pre-compiled binary or use Docker.
 
 ### Install the pre-compiled binary
 
-Download the pre-compiled binaries from the [releases page](https://github.com/mostafa/xk6bundler/releases) and copy to the desired location.
+Download the pre-compiled binaries from the [releases page](https://github.com/mostafa/xk6-bundler/releases) and copy to the desired location.
 
 ### Install with Go
 
 If you have Go environment set up, you can build xk6bundler from source by running:
 
 ```sh
-go get github.com/mostafa/xk6bundler/cmd/xk6bundler
+go get github.com/mostafa/xk6-bundler/cmd/xk6bundler
 ```
 
 Binary would be installed to $GOPATH/bin/xk6bundler.
@@ -201,7 +201,7 @@ You can also use it within a Docker container. To do that, you'll need to
 execute the following:
 
 ```bash
-docker run mostafa/xk6bundler
+docker run mostafa/xk6-bundler
 ```
 
 ### Verifying your installation
