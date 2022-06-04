@@ -1,6 +1,6 @@
-name: xk6bundler
+name: xk6-bundler
 description: Bundle k6 with extensions as fast and easily as possible.
-author: Iván Szkiba
+author: Iván Szkiba, Mostfa Moradian
 
 branding:
   icon: gift
