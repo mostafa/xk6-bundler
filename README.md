@@ -17,25 +17,30 @@ For a real life example check [k6-crocus](https://github.com/szkiba/k6-crocus) a
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [Parameters](#parameters)
-  - [name](#name)
-  - [version](#version)
-  - [with](#with)
-  - [platform](#platform)
-  - [output](#output)
-  - [archive](#archive)
-  - [k6_repo](#k6_repo)
-  - [k6_version](#k6_version)
-- [GitHub Action](#github-action)
-  - [Outputs](#outputs)
-  - [GitHub release](#github-release)
-  - [Docker Hub push](#docker-hub-push)
-- [CLI](#cli)
-  - [Install the pre-compiled binary](#install-the-pre-compiled-binary)
-  - [Install with Go](#install-with-go)
-  - [Running with Docker](#running-with-docker)
-  - [Verifying your installation](#verifying-your-installation)
-  - [Usage](#usage)
+- [xk6bundler](#xk6bundler)
+  - [Parameters](#parameters)
+    - [name](#name)
+    - [version](#version)
+    - [with](#with)
+    - [platform](#platform)
+    - [output](#output)
+    - [archive](#archive)
+    - [k6_repo](#k6_repo)
+    - [k6_version](#k6_version)
+  - [GitHub Action](#github-action)
+    - [Outputs](#outputs)
+      - [name](#name-1)
+      - [version](#version-1)
+      - [dockerfile](#dockerfile)
+      - [dockerdir](#dockerdir)
+    - [GitHub release](#github-release)
+    - [Docker Hub push](#docker-hub-push)
+  - [CLI](#cli)
+    - [Install the pre-compiled binary](#install-the-pre-compiled-binary)
+    - [Install with Go](#install-with-go)
+    - [Running with Docker](#running-with-docker)
+    - [Verifying your installation](#verifying-your-installation)
+    - [Usage](#usage)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -45,16 +50,16 @@ The CLI tool and GitHub Action has same parameters. The main difference is how t
 
 The following table show parameter names, CLI option flags and environment variable names for the default value of a given parameter:
 
-Parameter                   | CLI                     | Environment
-----------------------------|-------------------------|----------------------
-[`name`](#name)             | `-n, --name=name`       | `XK6BUNDLER_NAME`
-[`version`](#version)       | `-v, --version=version` | `XK6BUNDLER_VERSION`
-[`with`](#with)             | `-w, --with=extension`  | `XK6BUNDLER_WITH`
-[`platform`](#platform)     | `-p, --platform=target` | `XK6BUNDLER_PLATFORM`
-[`output`](#output)         | `-o, --output=path`     | `XK6BUNDLER_OUTPUT`
-[`archive`](#archive)       | `-a, --archive=path`    | `XK6BUNDLER_ARCHIVE`
-[`k6_repo`](#k6_repo)       | `--k6-repo=repo`        | `XK6BUNDLER_K6_REPO`
-[`k6_version`](#k6_version) | `--k6-version=version`  | `XK6BUNDLER_K6_VERSION`
+| Parameter                   | CLI                     | Environment             |
+| --------------------------- | ----------------------- | ----------------------- |
+| [`name`](#name)             | `-n, --name=name`       | `XK6BUNDLER_NAME`       |
+| [`version`](#version)       | `-v, --version=version` | `XK6BUNDLER_VERSION`    |
+| [`with`](#with)             | `-w, --with=extension`  | `XK6BUNDLER_WITH`       |
+| [`platform`](#platform)     | `-p, --platform=target` | `XK6BUNDLER_PLATFORM`   |
+| [`output`](#output)         | `-o, --output=path`     | `XK6BUNDLER_OUTPUT`     |
+| [`archive`](#archive)       | `-a, --archive=path`    | `XK6BUNDLER_ARCHIVE`    |
+| [`k6_repo`](#k6_repo)       | `--k6-repo=repo`        | `XK6BUNDLER_K6_REPO`    |
+| [`k6_version`](#k6_version) | `--k6-version=version`  | `XK6BUNDLER_K6_VERSION` |
 
 ### name
 
@@ -78,13 +83,13 @@ Target platform in `os/arch` format. When using CLI, it can be used multiple tim
 
 The following template variables available in template:
 
-Variable  | Descripion
-----------|-----------
-`Os`      | OS name (values defined by `GOOS`)
-`Arch`    | hardware architecture (values defined by `GOARCH`)
-`Ext`     | `.exe` on windows empty otherwise
-`Name`    | bundle name
-`Version` | bundle version
+| Variable  | Descripion                                         |
+| --------- | -------------------------------------------------- |
+| `Os`      | OS name (values defined by `GOOS`)                 |
+| `Arch`    | hardware architecture (values defined by `GOARCH`) |
+| `Ext`     | `.exe` on windows empty otherwise                  |
+| `Name`    | bundle name                                        |
+| `Version` | bundle version                                     |
 
 You can use [slim-sprig](https://go-task.github.io/slim-sprig/) template function library as well.
 
@@ -94,13 +99,13 @@ You can use [slim-sprig](https://go-task.github.io/slim-sprig/) template functio
 
 The following template variables available in template:
 
-Variable  | Descripion
-----------|-----------
-`Os`      | OS name (values defined by `GOOS`)
-`Arch`    | hardware architecture (values defined by `GOARCH`)
-`Ext`     | `.exe` on windows empty otherwise
-`Name`    | bundle name
-`Version` | bundle version
+| Variable  | Descripion                                         |
+| --------- | -------------------------------------------------- |
+| `Os`      | OS name (values defined by `GOOS`)                 |
+| `Arch`    | hardware architecture (values defined by `GOARCH`) |
+| `Ext`     | `.exe` on windows empty otherwise                  |
+| `Name`    | bundle name                                        |
+| `Version` | bundle version                                     |
 
 You can use [slim-sprig](https://go-task.github.io/slim-sprig/) template function library as well.
 
@@ -114,12 +119,12 @@ The core k6 version to build. Optional, if missing then `latest` will be used.
 
 ## GitHub Action
 
-For using xk6bundler as [GitHub Action](https://docs.github.com/en/actions), you should include a workflow step with `uses: szkiba/xk6bundler@v0`
+For using xk6bundler as [GitHub Action](https://docs.github.com/en/actions), you should include a workflow step with `uses: mostafa/xk6bundler@v1`
 
 ```yaml
 - name: Build
   id: build
-  uses: szkiba/xk6bundler@v0
+  uses: mostafa/xk6bundler@v1
   with:
     platform: linux/amd64 windows/amd64
     with: |
@@ -178,14 +183,14 @@ You can install the pre-compiled binary or use Docker.
 
 ### Install the pre-compiled binary
 
-Download the pre-compiled binaries from the [releases page](https://github.com/szkiba/xk6bundler/releases) and copy to the desired location.
+Download the pre-compiled binaries from the [releases page](https://github.com/mostafa/xk6bundler/releases) and copy to the desired location.
 
 ### Install with Go
 
 If you have Go environment set up, you can build xk6bundler from source by running:
 
 ```sh
-go get github.com/szkiba/xk6bundler/cmd/xk6bundler
+go get github.com/mostafa/xk6bundler/cmd/xk6bundler
 ```
 
 Binary would be installed to $GOPATH/bin/xk6bundler.
@@ -196,7 +201,7 @@ You can also use it within a Docker container. To do that, you'll need to
 execute the following:
 
 ```bash
-docker run szkiba/xk6bundler
+docker run mostafa/xk6bundler
 ```
 
 ### Verifying your installation

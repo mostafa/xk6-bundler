@@ -15,7 +15,7 @@ jobs:
 
       - name: Build
         id: build
-        uses: szkiba/xk6bundler@v0
+        uses: mostafa/xk6bundler@v1
         with:
           platform: linux/amd64 windows/amd64
           with: |
