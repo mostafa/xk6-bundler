@@ -35,7 +35,7 @@ import (
 	"text/template"
 
 	sprig "github.com/go-task/slim-sprig"
-	"github.com/k6io/xk6"
+	"go.k6.io/xk6"
 )
 
 //go:embed Dockerfile

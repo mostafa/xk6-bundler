@@ -31,7 +31,7 @@ import (
 	"strings"
 
 	"github.com/jessevdk/go-flags"
-	"github.com/k6io/xk6"
+	"go.k6.io/xk6"
 	"gopkg.in/ini.v1"
 )
 

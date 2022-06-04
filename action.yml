@@ -66,4 +66,4 @@ outputs:
 
 runs:
   using: docker
-  image: docker://szkiba/xk6bundler:v0
+  image: docker://mostafa/xk6bundler:v0
